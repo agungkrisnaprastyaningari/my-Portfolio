@@ -70,16 +70,17 @@ export const metadata = {
   category: 'technology',
   classification: 'Portfolio Website',
   referrer: 'origin-when-cross-origin',
-  colorScheme: 'dark',
-  themeColor: '#1e40af',
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 1,
-  },
   alternates: {
     canonical: 'https://agungkrisnaprastyaningari.vercel.app',
   },
+}
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  colorScheme: 'dark',
+  themeColor: '#1e40af',
 }
 
 import { ReactNode } from "react"

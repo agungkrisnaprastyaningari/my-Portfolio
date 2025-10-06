@@ -6,9 +6,8 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Badge } from '@/components/ui/badge'
-import { Github, Mail, Phone, MapPin, ExternalLink, Code, Database, Globe, Smartphone, Menu, X, ArrowRight, Sparkles, Zap, Target, Users } from 'lucide-react'
+import { Github, Mail, Phone, MapPin, ExternalLink, Code, Database, Globe, Smartphone, Menu, X, Sparkles, Zap, Target, Users } from 'lucide-react'
 import emailjs from '@emailjs/browser'
-import SplitText from './component/teks nama'
 import Image from 'next/image'
 
 export default function Portfolio() {
@@ -16,9 +15,6 @@ export default function Portfolio() {
   const [submitStatus, setSubmitStatus] = useState('')
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
-  const handleAnimationComplete = () => {
-    console.log('All letters have animated!')
-  }
 
   const sendEmail = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -230,7 +226,7 @@ export default function Portfolio() {
                   Computer Science student at <span className="text-blue-400 font-medium">BINUS@Malang</span>, 
                   a <span className="text-cyan-400 font-medium"> passionate</span> and
                    individual diving headfirst into the realm of <span className="text-blue-400 font-medium"> creative </span>
-                    industries. I'm a newcomer fullstack developer, ready to infuse my unique perspective and eager spirit into the vibrant world of creativity.
+                    industries. I&apos;m a newcomer fullstack developer, ready to infuse my unique perspective and eager spirit into the vibrant world of creativity.
                 </p>      
               </div>
             </div>
@@ -371,7 +367,7 @@ export default function Portfolio() {
             <div className="bg-gray-800/50 backdrop-blur-sm border border-blue-500/20 rounded-lg p-8 max-w-4xl mx-auto">
               <h3 className="text-2xl font-bold text-white mb-4">READY TO BUILD?</h3>
               <p className="text-lg text-white/60 mb-6 font-light">
-                Let's collaborate and create innovative solutions together
+                Let&apos;s collaborate and create innovative solutions together
               </p>
               <Button 
                 className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white px-6 py-3 font-medium rounded-md border-0 transition-all duration-300"
@@ -495,7 +491,7 @@ export default function Portfolio() {
               CONTACT
             </h2>
             <p className="text-xl text-white/60 max-w-3xl mx-auto mb-8 font-light">
-              Ready to bring your ideas to life? Let's collaborate and create something amazing together!
+              Ready to bring your ideas to life? Let&apos;s collaborate and create something amazing together!
             </p>
             <div className="w-16 h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent mx-auto"></div>
           </div>
