@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Badge } from '@/components/ui/badge'
-import { Github, Mail, Phone, MapPin, ExternalLink, Code, Database, Globe, Smartphone } from 'lucide-react'
+import { Github, Mail, Phone, MapPin, ExternalLink, Code, Database, Globe, Smartphone, Menu, X, ArrowRight, Sparkles, Zap, Target, Users } from 'lucide-react'
 import emailjs from '@emailjs/browser'
 import SplitText from './component/teks nama'
 import Image from 'next/image'
@@ -14,17 +14,18 @@ import Image from 'next/image'
 export default function Portfolio() {
   const [isLoading, setIsLoading] = useState(false)
   const [submitStatus, setSubmitStatus] = useState('')
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   const handleAnimationComplete = () => {
     console.log('All letters have animated!')
   }
 
-  const sendEmail = async (e: React.FormEvent<HTMLFormElement>) => { // Perbaikan: Tambahkan tipe untuk parameter 'e'
+  const sendEmail = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsLoading(true)
     setSubmitStatus('')
 
-    const formData = new FormData(e.currentTarget) // Gunakan 'e.currentTarget' untuk mendapatkan elemen form
+    const formData = new FormData(e.currentTarget)
     const templateParams = {
       name: formData.get('name'),
       email: formData.get('email'),
@@ -33,7 +34,6 @@ export default function Portfolio() {
     }
 
     try {
-      // Initialize EmailJS with public key
       emailjs.init('YOUR_PUBLIC_KEY')
       
       const response = await emailjs.send(
@@ -57,11 +57,9 @@ export default function Portfolio() {
   // Konten lainnya tetap sama...
 
   const skills = [
-    { name: 'C++', category: 'Programming' },
     { name: 'Java', category: 'Programming' },
-    { name: 'Python', category: 'Programming' },
     { name: 'MySQL', category: 'Database' },
-    { name: 'Golang', category: 'Programming' },
+    { name: 'Figma', category: 'Design' },
     { name: 'React', category: 'Frontend' },
     { name: 'Next.js', category: 'Frontend' },
     { name: 'GitHub', category: 'Tools' },
@@ -72,100 +70,131 @@ export default function Portfolio() {
   const projects = [
     {
       name: 'ZeroWaste',
-      description: 'Pengelolaan sampah kini bukan sekadar kewajiban, tetapi bisa menjadi peluang. Aplikasi yang mengubah kebiasaan membuang sampah menjadi aksi berkelanjutan yang bernilai.',
+      description: 'Designing System in ZeroWaste based on SDG.',
       technologies: ['Golang', 'React', 'JSON'],
-      link: 'https://github.com/rakaamaulanaa/ZeroWaste.git',
+      link: 'https://github.com/agungkrisnaprastyaningari/projectGoLang.git',
+      type: 'Mobile Application'
+    },
+    {
+      name: 'Inventronik ',
+      description: 'UI/UX designer & Front end developer, Developing Helping System for electronic inventory for electronic store.',
+      technologies: ['Php'],
+      link: 'https://github.com/agungkrisnaprastyaningari/INVENTRONIK.git',
       type: 'Web Application'
     },
     {
-      name: 'Project Penjualan Mobil',
-      description: 'Pengelolaan penjualan mobil yang efektif dan terstruktur untuk membantu dealer mobil mengelola inventori dan transaksi penjualan.',
-      technologies: ['C++'],
-      link: 'https://github.com/rakaamaulanaa/Project-Penjualan-Mobil.git',
-      type: 'Desktop Application'
+      name: 'Intern Ibra Creative Studio',
+      description: 'Create digital works for sale.',
+      technologies: ['Adobe Photoshop', 'Adobe Illustrator'],
+      type: 'Internship'
     }
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
-      {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-md border-b border-gray-200 z-50">
-        <div className="container mx-auto px-6 py-4">
+    <div className="min-h-screen bg-black text-white overflow-hidden">
+      {/* Modern Navigation */}
+      <nav className="fixed top-0 w-full z-50">
+        <div className="container mx-auto px-6 py-6">
           <div className="flex items-center justify-between">
-            <h1 className="text-xl font-bold text-gray-900">Raka Maulana Akbar</h1>
-            <div className="hidden md:flex space-x-6">
-              <a href="#home" className="text-gray-600 hover:text-blue-600 transition-colors">Home</a>
-              <a href="#about" className="text-gray-600 hover:text-blue-600 transition-colors">About</a>
-              <a href="#projects" className="text-gray-600 hover:text-blue-600 transition-colors">Projects</a>
-              <a href="#education" className="text-gray-600 hover:text-blue-600 transition-colors">Education</a>
-              <a href="#skills" className="text-gray-600 hover:text-blue-600 transition-colors">Skills</a>
-              <a href="#contact" className="text-gray-600 hover:text-blue-600 transition-colors">Contact</a>
+            <div className="flex items-center space-x-3">
+              <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-md flex items-center justify-center">
+                <Code className="w-4 h-4 text-white" />
+              </div>
+              <h1 className="text-lg font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+                Gng
+              </h1>
             </div>
+            
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center space-x-8">
+              <a href="#home" className="text-white/60 hover:text-blue-400 transition-all duration-300 text-sm font-medium">HOME</a>
+              <a href="#about" className="text-white/60 hover:text-blue-400 transition-all duration-300 text-sm font-medium">ABOUT</a>
+              <a href="#projects" className="text-white/60 hover:text-blue-400 transition-all duration-300 text-sm font-medium">EXPERIENCE</a>
+              <a href="#skills" className="text-white/60 hover:text-blue-400 transition-all duration-300 text-sm font-medium">SKILLS</a>
+              <a href="#contact" className="text-white/60 hover:text-blue-400 transition-all duration-300 text-sm font-medium">CONTACT</a>
+              <Button className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 border-0 rounded-md px-4 py-2 text-sm">
+                <Mail className="w-3 h-3 mr-2" />
+                CONTACT
+              </Button>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              className="md:hidden text-white"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
+              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
           </div>
+
+          {/* Mobile Menu */}
+          {isMobileMenuOpen && (
+            <div className="md:hidden mt-4 bg-gray-900/90 backdrop-blur-md rounded-lg p-4 border border-blue-500/20">
+              <div className="flex flex-col space-y-3">
+                <a href="#home" className="text-white/70 hover:text-blue-400 transition-colors text-sm font-medium">HOME</a>
+                <a href="#about" className="text-white/70 hover:text-blue-400 transition-colors text-sm font-medium">ABOUT</a>
+                <a href="#projects" className="text-white/70 hover:text-blue-400 transition-colors text-sm font-medium">EXPERIENCE</a>
+                <a href="#skills" className="text-white/70 hover:text-blue-400 transition-colors text-sm font-medium">SKILLS</a>
+                <a href="#contact" className="text-white/70 hover:text-blue-400 transition-colors text-sm font-medium">CONTACT</a>
+              </div>
+            </div>
+          )}
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <section id="home" className="pt-20 pb-16 px-6">
-        <div className="container mx-auto">
-          <div className="flex flex-col lg:flex-row items-center gap-12">
-            <div className="flex-1 text-center lg:text-left">
-              <SplitText
-                text="Raka Maulana Akbar"
-                className="text-5xl lg:text-7xl font-bold text-gray-900 mb-4"
-                delay={100}
-                duration={0.6}
-                ease="power3.out"
-                splitType="chars"
-                from={{ opacity: 0, y: 40 }}
-                to={{ opacity: 1, y: 0 }}
-                threshold={0.1}
-                rootMargin="-100px"
-                textAlign="center"
-                tag="h1"
-                onLetterAnimationComplete={handleAnimationComplete}
-              />
-              <h2 className="text-2xl lg:text-3xl text-gray-600 mb-6">Full Stack Developer</h2>
-              <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                Computer Science student passionate about building scalable and user-friendly digital solutions for web and mobile applications.
-              </p>
-              <div className="flex flex-wrap gap-3 justify-center lg:justify-start mb-8">
-                {['C++', 'Java', 'Python', 'MySQL', 'Golang', 'React', 'Next.js', 'GitHub'].map((tech) => (
-                  <Badge key={tech} variant="secondary" className="px-4 py-2 text-sm">
-                    {tech}
-                  </Badge>
-                ))}
+      {/* Compact Hero Section */}
+      <section id="home" className="py-24 flex items-center relative">
+        <div className="container mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left Content Area */}
+            <div className="space-y-6">
+              {/* Main Headline */}
+              <div>
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight">
+                  Agung Krisna
+                  <br />
+                  Prastyaning 
+                  <br />
+                  <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+                    Ari
+                  </span>
+                </h1>
               </div>
-              <div className="flex gap-4 justify-center lg:justify-start">
-                <Button className="bg-blue-600 hover:bg-blue-700">
-                  <a href="#contact" className="flex items-center gap-2">
-                    <Mail className="w-4 h-4" />
-                    Get In Touch
-                  </a>
-                </Button>
-                <Button variant="outline">
-                  <a href="#projects" className="flex items-center gap-2">
-                    <Code className="w-4 h-4" />
-                    View Projects
-                  </a>
+
+              {/* Description */}
+              <div className="space-y-2">
+                <p className="text-base text-white/70 font-light">
+                  a <span className="text-blue-400 font-medium">Full Stack Developer</span> and 
+                  <span className="text-cyan-400 font-medium"> Computer Science Student</span> in Malang.
+                </p>
+                <p className="text-base text-white/70 font-light">
+                  an Junior in Web Development, UI UX Design, and Backend Systems.
+                </p>
+              </div>
+
+              {/* Simple CTA */}
+              <div className="pt-2">
+                <Button 
+                  className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white px-6 py-2 font-medium rounded-md border-0 transition-all duration-300"
+                >
+                  Get In Touch
                 </Button>
               </div>
             </div>
-            <div className="flex-1">
-              <div className="relative">
-                <Image
-                  src="/image/4x6CM.jpg"
-                  alt="Developer Workspace"
-                  width={512}
-                  height={640}
-                  className="rounded-2xl shadow-2xl w-full max-w-lg mx-auto"
-                  priority
-                />
-                <div className="absolute -bottom-6 -right-6 bg-white p-4 rounded-lg shadow-lg">
-                  <div className="flex items-center gap-3">
-                    <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                    <span className="text-sm font-medium text-gray-700">Available for projects</span>
-                  </div>
+
+            {/* Right Visual Area */}
+            <div className="relative">
+              <div className="relative w-full max-w-sm mx-auto">
+                {/* Profile Image */}
+                <div>
+                  <Image
+                    src="/image/4x6CM.png"
+                    alt="Agung Krisna Prastyaning Ari"
+                    width={300}
+                    height={400}
+                    className="w-full h-auto rounded-lg object-cover shadow-xl"
+                    priority
+                  />
                 </div>
               </div>
             </div>
@@ -173,206 +202,370 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* About Section */}
-      <section id="about" className="py-16 px-6 bg-white">
-        <div className="container mx-auto max-w-4xl">
-          <h2 className="text-3xl lg:text-4xl font-bold text-center text-gray-900 mb-12">About Me</h2>
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <p className="text-lg text-gray-600 leading-relaxed mb-6">
-                I am a Computer Science student at BINUS@Malang, currently focusing on becoming a Full Stack Developer for both web and mobile applications. My passion lies in building scalable and user-friendly digital solutions that make a real impact.
-              </p>
-              <p className="text-lg text-gray-600 leading-relaxed mb-6">
-                With hands-on experience in Golang and JavaScript, I enjoy working across the entire development stack - from designing intuitive user interfaces to building robust backend systems and databases.
-              </p>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                My goal is to contribute to innovative projects that solve real-world problems while continuously learning and growing as a developer in this ever-evolving tech landscape.
-              </p>
+      {/* Clean About Section */}
+      <section id="about" className="py-24 px-6 bg-black relative overflow-hidden">
+        {/* Subtle Background Elements */}
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute top-1/4 right-1/4 w-64 h-64 border border-blue-500/20 rounded-full"></div>
+          <div className="absolute bottom-1/4 left-1/4 w-32 h-32 border border-cyan-500/20 rounded-full"></div>
+        </div>
+
+        <div className="container mx-auto max-w-6xl relative z-10">
+          <div className="text-center mb-16">
+            <h2 className="text-5xl md:text-6xl font-black mb-6 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent tracking-tight">
+              ABOUT
+            </h2>
+            <div className="w-16 h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent mx-auto"></div>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-16 items-start">
+            {/* Main Content */}
+            <div className="space-y-8">
+              <div className="bg-gray-900/50 backdrop-blur-sm border border-blue-500/20 rounded-lg p-8">
+                <h3 className="text-2xl font-bold mb-6 text-white flex items-center gap-3">
+                  <Code className="w-6 h-6 text-blue-400" />
+                  MY JOURNEY
+                </h3>
+                <p className="text-lg text-white/70 leading-relaxed mb-6 font-light">
+                  Computer Science student at <span className="text-blue-400 font-medium">BINUS@Malang</span>, 
+                  a <span className="text-cyan-400 font-medium"> passionate</span> and
+                   individual diving headfirst into the realm of <span className="text-blue-400 font-medium"> creative </span>
+                    industries. I'm a newcomer fullstack developer, ready to infuse my unique perspective and eager spirit into the vibrant world of creativity.
+                </p>      
+              </div>
             </div>
-            <div className="grid grid-cols-2 gap-6">
-              <Card className="p-6 text-center">
-                <Globe className="w-8 h-8 text-blue-600 mx-auto mb-3" />
-                <h3 className="font-semibold text-gray-900 mb-2">Web Development</h3>
-                <p className="text-sm text-gray-600">Modern web applications with React & Next.js</p>
+
+            {/* Skills Cards */}
+            <div className="space-y-6">
+              <Card className="bg-gray-900/50 backdrop-blur-sm border border-blue-500/20 p-6 hover:border-blue-400/40 transition-all duration-300">
+                <CardContent className="p-0 text-center">
+                  <Globe className="w-8 h-8 text-blue-400 mx-auto mb-3" />
+                  <h3 className="text-lg font-bold text-white mb-2">WEB DEVELOPMENT</h3>
+                  <p className="text-white/60 text-sm font-light">Modern web applications with React & Next.js</p>
+                </CardContent>
               </Card>
-              <Card className="p-6 text-center">
-                <Smartphone className="w-8 h-8 text-blue-600 mx-auto mb-3" />
-                <h3 className="font-semibold text-gray-900 mb-2">Mobile Apps</h3>
-                <p className="text-sm text-gray-600">Cross-platform mobile solutions</p>
+
+              <Card className="bg-gray-900/50 backdrop-blur-sm border border-blue-500/20 p-6 hover:border-blue-400/40 transition-all duration-300">
+                <CardContent className="p-0 text-center">
+                  <Smartphone className="w-8 h-8 text-cyan-400 mx-auto mb-3" />
+                  <h3 className="text-lg font-bold text-white mb-2">UI UX Design</h3>
+                  <p className="text-white/60 text-sm font-light">Cross-platform mobile solutions</p>
+                </CardContent>
               </Card>
-              <Card className="p-6 text-center">
-                <Database className="w-8 h-8 text-blue-600 mx-auto mb-3" />
-                <h3 className="font-semibold text-gray-900 mb-2">Backend</h3>
-                <p className="text-sm text-gray-600">Scalable APIs with Golang & databases</p>
+
+              <Card className="bg-gray-900/50 backdrop-blur-sm border border-blue-500/20 p-6 hover:border-blue-400/40 transition-all duration-300">
+                <CardContent className="p-0 text-center">
+                  <Database className="w-8 h-8 text-blue-400 mx-auto mb-3" />
+                  <h3 className="text-lg font-bold text-white mb-2">BACKEND</h3>
+                  <p className="text-white/60 text-sm font-light">Scalable APIs with databases</p>
+                </CardContent>
               </Card>
-              <Card className="p-6 text-center">
-                <Code className="w-8 h-8 text-blue-600 mx-auto mb-3" />
-                <h3 className="font-semibold text-gray-900 mb-2">Clean Code</h3>
-                <p className="text-sm text-gray-600">Maintainable & efficient solutions</p>
+
+              <Card className="bg-gray-900/50 backdrop-blur-sm border border-blue-500/20 p-6 hover:border-blue-400/40 transition-all duration-300">
+                <CardContent className="p-0 text-center">
+                  <Code className="w-8 h-8 text-cyan-400 mx-auto mb-3" />
+                  <h3 className="text-lg font-bold text-white mb-2">CLEAN CODE</h3>
+                  <p className="text-white/60 text-sm font-light">Maintainable & efficient solutions</p>
+                </CardContent>
               </Card>
+            </div>
+          </div>
+
+          {/* Stats Section */}
+          <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div className="text-center">
+              <div className="text-4xl md:text-5xl font-black text-blue-400 mb-2">3+</div>
+              <div className="text-white/60 font-light text-sm">YEARS LEARNING</div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl md:text-5xl font-black text-cyan-400 mb-2">10+</div>
+              <div className="text-white/60 font-light text-sm">TECHNOLOGIES</div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl md:text-5xl font-black text-blue-400 mb-2">5+</div>
+              <div className="text-white/60 font-light text-sm">EXPERIENCE</div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl md:text-5xl font-black text-cyan-400 mb-2">∞</div>
+              <div className="text-white/60 font-light text-sm">PASSION</div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Projects Section */}
-      <section id="projects" className="py-16 px-6 bg-gray-50">
-        <div className="container mx-auto max-w-6xl">
-          <h2 className="text-3xl lg:text-4xl font-bold text-center text-gray-900 mb-12">Projects</h2>
-          <div className="grid lg:grid-cols-2 gap-8">
+      {/* Clean Projects Section */}
+      <section id="projects" className="py-24 px-6 bg-gray-900 relative overflow-hidden">
+        {/* Subtle Background */}
+        <div className="absolute inset-0">
+          <div className="absolute top-1/3 left-1/4 w-72 h-72 bg-gradient-to-r from-blue-500/5 to-cyan-500/5 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-1/3 right-1/4 w-72 h-72 bg-gradient-to-r from-blue-600/5 to-indigo-500/5 rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="container mx-auto max-w-6xl relative z-10">
+          <div className="text-center mb-16">
+            <h2 className="text-5xl md:text-6xl font-black mb-6 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent tracking-tight">
+              EXPERIENCE
+            </h2>
+            <p className="text-xl text-white/60 max-w-3xl mx-auto font-light">
+              Innovative solutions showcasing technology and problem-solving
+            </p>
+            <div className="w-16 h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent mx-auto mt-6"></div>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-12">
             {projects.map((project, index) => (
-              <Card key={index} className="p-6 hover:shadow-lg transition-shadow duration-300">
-                <CardContent className="p-0">
-                  <div className="flex items-center gap-3 mb-4">
-                    <h3 className="text-xl font-bold text-gray-900">{project.name}</h3>
-                    <Badge variant="outline" className="text-xs">{project.type}</Badge>
+              <div key={index} className="group">
+                <Card className="bg-gray-800/50 backdrop-blur-sm border border-blue-500/20 hover:border-blue-400/40 transition-all duration-300 p-8 h-full">
+                  <CardContent className="p-0">
+                    <div className="flex items-start justify-between mb-6">
+                      <div className="flex items-center gap-4">
+                        <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-lg flex items-center justify-center">
+                          <Code className="w-6 h-6 text-white" />
+                        </div>
+                        <div>
+                          <h3 className="text-xl md:text-2xl font-bold text-white mb-2">{project.name}</h3>
+                          <Badge className="bg-blue-500/20 text-blue-300 border border-blue-500/30 text-xs">
+                            {project.type}
+                          </Badge>
+                        </div>
+                      </div>
+                    </div>
+
+                    <p className="text-base text-white/70 leading-relaxed mb-6 font-light">{project.description}</p>
+
+                    <div className="mb-6">
+                      <h4 className="text-white font-semibold mb-3 flex items-center gap-2 text-sm">
+                        <Target className="w-4 h-4 text-blue-400" />
+                        TECHNOLOGIES
+                      </h4>
+                      <div className="flex flex-wrap gap-2">
+                        {project.technologies.map((tech) => (
+                          <div
+                            key={tech}
+                            className="bg-gray-700/50 border border-blue-500/20 rounded-md px-3 py-1 text-white/80 font-mono text-xs"
+                          >
+                            {tech}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    <Button 
+                      className="w-full bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white py-3 font-medium rounded-md border-0 transition-all duration-300" 
+                      asChild
+                    >
+                      <a href={project.link} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
+                        <Github className="w-4 h-4" />
+                        VIEW CODE
+                        <ExternalLink className="w-4 h-4" />
+                      </a>
+                    </Button>
+                  </CardContent>
+                </Card>
+              </div>
+            ))}
+          </div>
+
+          {/* Call to Action */}
+          <div className="text-center mt-16">
+            <div className="bg-gray-800/50 backdrop-blur-sm border border-blue-500/20 rounded-lg p-8 max-w-4xl mx-auto">
+              <h3 className="text-2xl font-bold text-white mb-4">READY TO BUILD?</h3>
+              <p className="text-lg text-white/60 mb-6 font-light">
+                Let's collaborate and create innovative solutions together
+              </p>
+              <Button 
+                className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white px-6 py-3 font-medium rounded-md border-0 transition-all duration-300"
+              >
+                <a href="#contact" className="flex items-center gap-2">
+                  <Users className="w-4 h-4" />
+                  CONTACT ME
+                </a>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Clean Skills Section */}
+      <section id="skills" className="py-24 px-6 bg-black relative overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0">
+          <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-blue-500/5 to-cyan-500/5 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-blue-600/5 to-indigo-500/5 rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="container mx-auto max-w-6xl relative z-10">
+          <div className="text-center mb-16">
+            <h2 className="text-5xl md:text-6xl font-black mb-6 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent tracking-tight">
+              SKILLS
+            </h2>
+            <p className="text-xl text-white/60 max-w-3xl mx-auto mb-8 font-light">
+              Technologies and tools to bring ideas to life
+            </p>
+            <div className="w-16 h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent mx-auto"></div>
+          </div>
+
+          {/* Skills Grid */}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-16">
+            {skills.map((skill, index) => (
+              <div
+                key={index}
+                className="group cursor-pointer"
+                style={{ animationDelay: `${index * 50}ms` }}
+              >
+                <Card className="bg-gray-900/50 backdrop-blur-sm border border-blue-500/20 hover:border-blue-400/40 transition-all duration-300 p-4 text-center h-full">
+                  <CardContent className="p-0">
+                    <div className="w-12 h-12 bg-gradient-to-r from-blue-600/20 to-cyan-600/20 rounded-lg flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300">
+                      <Code className="w-6 h-6 text-blue-400" />
+                    </div>
+                    <h3 className="text-sm font-bold text-white mb-2 group-hover:text-blue-300 transition-colors duration-300">
+                      {skill.name}
+                    </h3>
+                    <Badge className="bg-blue-500/20 text-blue-300 border border-blue-500/30 text-xs">
+                      {skill.category}
+                    </Badge>
+                  </CardContent>
+                </Card>
+              </div>
+            ))}
+          </div>
+
+          {/* Education Card */}
+          <div className="max-w-4xl mx-auto">
+            <Card className="bg-gray-900/50 backdrop-blur-sm border border-blue-500/20 p-8">
+              <CardContent className="p-0">
+                <div className="flex items-center gap-6 mb-8">
+                  <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-lg flex items-center justify-center">
+                    <Code className="w-8 h-8 text-white" />
                   </div>
-                  <p className="text-gray-600 mb-6 leading-relaxed">{project.description}</p>
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    {project.technologies.map((tech) => (
-                      <Badge key={tech} variant="secondary" className="text-xs">
-                        {tech}
-                      </Badge>
+                  <div>
+                    <h3 className="text-2xl font-bold text-white mb-2">BINUS@MALANG</h3>
+                    <p className="text-blue-300 font-medium">COMPUTER SCIENCE</p>
+                  </div>
+                </div>
+                
+                <div className="grid md:grid-cols-2 gap-8 mb-8">
+                  <div className="bg-gray-800/50 backdrop-blur-sm rounded-lg p-6 border border-blue-500/20">
+                    <h4 className="font-bold text-white mb-3 flex items-center gap-2 text-sm">
+                      <Target className="w-4 h-4 text-blue-400" />
+                      SPECIALIZATION
+                    </h4>
+                    <p className="text-blue-300 font-medium">Full Stack Developer</p>
+                  </div>
+                  <div className="bg-gray-800/50 backdrop-blur-sm rounded-lg p-6 border border-blue-500/20">
+                    <h4 className="font-bold text-white mb-3 flex items-center gap-2 text-sm">
+                      <Sparkles className="w-4 h-4 text-blue-400" />
+                      GRADUATION
+                    </h4>
+                    <p className="text-blue-300 font-medium">2027</p>
+                  </div>
+                </div>
+
+                <div className="bg-gray-800/50 backdrop-blur-sm rounded-lg p-6 border border-blue-500/20">
+                  <h4 className="font-bold text-white mb-4 flex items-center gap-2 text-sm">
+                    <Zap className="w-4 h-4 text-blue-400" />
+                    FOCUS AREAS
+                  </h4>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    {['Web Development', 'Mobile Applications', 'Database Design', 'UI UX Design'].map((area, index) => (
+                      <div key={index} className="flex items-center gap-3">
+                        <div className="w-2 h-2 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full"></div>
+                        <span className="text-white/70 font-light text-sm">{area}</span>
+                      </div>
                     ))}
                   </div>
-                  <Button variant="outline" className="w-full" asChild>
-                    <a href={project.link} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
-                      <Github className="w-4 h-4" />
-                      View on GitHub
-                      <ExternalLink className="w-4 h-4" />
-                    </a>
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
 
-      {/* Education Section */}
-      <section id="education" className="py-16 px-6 bg-white">
-        <div className="container mx-auto max-w-4xl">
-          <h2 className="text-3xl lg:text-4xl font-bold text-center text-gray-900 mb-12">Education</h2>
-          <Card className="p-8">
-            <CardContent className="p-0">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center">
-                  <Code className="w-8 h-8 text-blue-600" />
-                </div>
-                <div>
-                  <h3 className="text-2xl font-bold text-gray-900">BINUS@Malang</h3>
-                  <p className="text-blue-600 font-medium">Computer Science</p>
-                </div>
-              </div>
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <h4 className="font-semibold text-gray-900 mb-2">Specialization</h4>
-                  <p className="text-gray-600">Full Stack Developer</p>
-                </div>
-                <div>
-                  <h4 className="font-semibold text-gray-900 mb-2">Expected Graduation</h4>
-                  <p className="text-gray-600">2027</p>
-                </div>
-              </div>
-              <div className="mt-6 pt-6 border-t border-gray-200">
-                <h4 className="font-semibold text-gray-900 mb-3">Focus Areas</h4>
-                <div className="grid md:grid-cols-2 gap-3">
-                  <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
-                    <span className="text-gray-600">Web Development</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
-                    <span className="text-gray-600">Mobile Applications</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
-                    <span className="text-gray-600">Database Design</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
-                    <span className="text-gray-600">Software Engineering</span>
-                  </div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+      {/* Clean Contact Section */}
+      <section id="contact" className="py-24 px-6 bg-gray-900 relative overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0">
+          <div className="absolute top-1/3 left-1/3 w-96 h-96 bg-gradient-to-r from-blue-500/5 to-cyan-500/5 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-1/3 right-1/3 w-96 h-96 bg-gradient-to-r from-blue-600/5 to-indigo-500/5 rounded-full blur-3xl"></div>
         </div>
-      </section>
 
-      {/* Skills Section */}
-      <section id="skills" className="py-16 px-6 bg-gray-50">
-        <div className="container mx-auto max-w-6xl">
-          <h2 className="text-3xl lg:text-4xl font-bold text-center text-gray-900 mb-12">Skills</h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {skills.map((skill, index) => (
-              <Card key={index} className="p-4 text-center hover:shadow-md transition-shadow duration-300">
-                <CardContent className="p-0">
-                  <h3 className="font-semibold text-gray-900 mb-2">{skill.name}</h3>
-                  <Badge variant="outline" className="text-xs">
-                    {skill.category}
-                  </Badge>
-                </CardContent>
-              </Card>
-            ))}
+        <div className="container mx-auto max-w-6xl relative z-10">
+          <div className="text-center mb-16">
+            <h2 className="text-5xl md:text-6xl font-black mb-6 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent tracking-tight">
+              CONTACT
+            </h2>
+            <p className="text-xl text-white/60 max-w-3xl mx-auto mb-8 font-light">
+              Ready to bring your ideas to life? Let's collaborate and create something amazing together!
+            </p>
+            <div className="w-16 h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent mx-auto"></div>
           </div>
-        </div>
-      </section>
 
-      {/* Contact Section */}
-      <section id="contact" className="py-16 px-6 bg-white">
-        <div className="container mx-auto max-w-6xl">
-          <h2 className="text-3xl lg:text-4xl font-bold text-center text-gray-900 mb-12">Contact Me</h2>
-          <div className="grid lg:grid-cols-2 gap-12">
+          <div className="grid lg:grid-cols-2 gap-16">
             {/* Contact Info */}
-            <div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">Get In Touch</h3>
-              <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                I&apos;m always open to discussing new opportunities, interesting projects, or just having a chat about technology. Feel free to reach out!
-              </p>
-              <div className="space-y-6">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                    <Mail className="w-6 h-6 text-blue-600" />
+            <div className="space-y-8">
+              <div className="bg-gray-800/50 backdrop-blur-sm border border-blue-500/20 rounded-lg p-8">
+                <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                  <Code className="w-6 h-6 text-blue-400" />
+                  GET IN TOUCH
+                </h3>
+                <p className="text-lg text-white/70 mb-8 leading-relaxed font-light">
+                  Always open to discussing new opportunities, interesting projects, or just having a chat about technology. Feel free to reach out!
+                </p>
+                
+                <div className="space-y-4">
+                  <div className="flex items-center gap-4 p-4 bg-gray-700/50 backdrop-blur-sm rounded-lg border border-blue-500/20 hover:border-blue-400/40 transition-all duration-300">
+                    <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-lg flex items-center justify-center">
+                      <Mail className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-bold text-white mb-1">EMAIL</h4>
+                      <a 
+                        href="mailto:hellokrisna02@gmail.com" 
+                        className="text-blue-300 hover:text-blue-200 transition-colors duration-300 font-light"
+                      >
+                        hellokrisna02@gmail.com
+                      </a>
+                    </div>
                   </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-900">Email</h4>
-                    <a href="mailto:rakaamaulanaakbar31@gmail.com" className="text-blue-600 hover:underline">
-                      rakaamaulanaakbar31@gmail.com
-                    </a>
+
+                  <div className="flex items-center gap-4 p-4 bg-gray-700/50 backdrop-blur-sm rounded-lg border border-blue-500/20 hover:border-blue-400/40 transition-all duration-300">
+                    <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-lg flex items-center justify-center">
+                      <Phone className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-bold text-white mb-1">WHATSAPP</h4>
+                      <a 
+                        href="https://wa.me/6282257355759" 
+                        className="text-blue-300 hover:text-blue-200 transition-colors duration-300 font-light" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                      >
+                        +62 812-3616-4965
+                      </a>
+                    </div>
                   </div>
-                </div>
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                    <Phone className="w-6 h-6 text-blue-600" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-900">WhatsApp</h4>
-                    <a href="https://wa.me/6282257355759" className="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">
-                      +62 822-5735-5759
-                    </a>
-                  </div>
-                </div>
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                    <MapPin className="w-6 h-6 text-blue-600" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-900">Location</h4>
-                    <p className="text-gray-600">Malang, Indonesia</p>
+
+                  <div className="flex items-center gap-4 p-4 bg-gray-700/50 backdrop-blur-sm rounded-lg border border-blue-500/20 hover:border-blue-400/40 transition-all duration-300">
+                    <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-lg flex items-center justify-center">
+                      <MapPin className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-bold text-white mb-1">LOCATION</h4>
+                      <p className="text-blue-300 font-light">Malang, Indonesia</p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
 
             {/* Contact Form */}
-            <Card className="p-6">
+            <div className="bg-gray-800/50 backdrop-blur-sm border border-blue-500/20 rounded-lg p-8">
               <CardContent className="p-0">
                 <form onSubmit={sendEmail} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
-                      <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                        Full Name *
+                      <label htmlFor="name" className="block text-sm font-bold text-white mb-2">
+                        FULL NAME *
                       </label>
                       <Input
                         type="text"
@@ -380,12 +573,12 @@ export default function Portfolio() {
                         name="name"
                         required
                         placeholder="Your full name"
-                        className="w-full"
+                        className="w-full bg-gray-700/50 border-blue-500/20 text-white placeholder:text-white/50 focus:border-blue-400/50 focus:ring-blue-400/50 rounded-md"
                       />
                     </div>
                     <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                        Email Address *
+                      <label htmlFor="email" className="block text-sm font-bold text-white mb-2">
+                        EMAIL ADDRESS *
                       </label>
                       <Input
                         type="email"
@@ -393,25 +586,25 @@ export default function Portfolio() {
                         name="email"
                         required
                         placeholder="your.email@example.com"
-                        className="w-full"
+                        className="w-full bg-gray-700/50 border-blue-500/20 text-white placeholder:text-white/50 focus:border-blue-400/50 focus:ring-blue-400/50 rounded-md"
                       />
                     </div>
                   </div>
                   <div>
-                    <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
-                      Subject
+                    <label htmlFor="subject" className="block text-sm font-bold text-white mb-2">
+                      SUBJECT
                     </label>
                     <Input
                       type="text"
                       id="subject"
                       name="subject"
                       placeholder="Brief subject of your message"
-                      className="w-full"
+                      className="w-full bg-gray-700/50 border-blue-500/20 text-white placeholder:text-white/50 focus:border-blue-400/50 focus:ring-blue-400/50 rounded-md"
                     />
                   </div>
                   <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                      Message *
+                    <label htmlFor="message" className="block text-sm font-bold text-white mb-2">
+                      MESSAGE *
                     </label>
                     <Textarea
                       id="message"
@@ -419,67 +612,94 @@ export default function Portfolio() {
                       required
                       rows={6}
                       placeholder="Your detailed message..."
-                      className="w-full"
+                      className="w-full bg-gray-700/50 border-blue-500/20 text-white placeholder:text-white/50 focus:border-blue-400/50 focus:ring-blue-400/50 rounded-md"
                     />
                   </div>
                   <Button
                     type="submit"
                     disabled={isLoading}
-                    className="w-full bg-blue-600 hover:bg-blue-700"
+                    className="w-full bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white py-3 font-medium rounded-md border-0 transition-all duration-300"
                   >
-                    {isLoading ? 'Sending...' : 'Send Message'}
+                    {isLoading ? (
+                      <div className="flex items-center gap-2">
+                        <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                        SENDING...
+                      </div>
+                    ) : (
+                      <div className="flex items-center gap-2">
+                        <Mail className="w-4 h-4" />
+                        SEND MESSAGE
+                      </div>
+                    )}
                   </Button>
                   {submitStatus && (
-                    <div className={`p-4 rounded-lg text-center ${
+                    <div className={`p-4 rounded-md text-center text-sm ${
                       submitStatus.includes('successfully') 
-                        ? 'bg-green-50 text-green-700 border border-green-200' 
-                        : 'bg-red-50 text-red-700 border border-red-200'
+                        ? 'bg-blue-500/20 text-blue-300 border border-blue-500/30' 
+                        : 'bg-red-500/20 text-red-300 border border-red-500/30'
                     }`}>
                       {submitStatus}
                     </div>
                   )}
                 </form>
               </CardContent>
-            </Card>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-8 px-6">
-        <div className="container mx-auto text-center">
-          <h3 className="text-2xl font-bold mb-4">Raka Maulana Akbar</h3>
-          <p className="text-gray-400 mb-6">
-            Full Stack Developer passionate about creating innovative digital solutions
-          </p>
-          <div className="flex justify-center gap-6 mb-6">
-            <a 
-              href="mailto:rakaamaulanaakbar31@gmail.com" 
-              className="text-gray-400 hover:text-white transition-colors"
-            >
-              <Mail className="w-6 h-6" />
-            </a>
-            <a 
-              href="https://github.com/rakaamaulanaa" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="text-gray-400 hover:text-white transition-colors"
-            >
-              <Github className="w-6 h-6" />
-            </a>
-            <a 
-              href="https://wa.me/6282257355759" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="text-gray-400 hover:text-white transition-colors"
-            >
-              <Phone className="w-6 h-6" />
-            </a>
-          </div>
-          <div className="border-t border-gray-800 pt-6">
-            <p className="text-gray-400 text-sm">
-              © 2024 Raka Maulana Akbar. Built with ❤️ using <strong>Next.js</strong>
+      {/* Clean Footer */}
+      <footer className="bg-black py-16 px-6 border-t border-blue-500/20">
+        <div className="container mx-auto">
+          <div className="text-center mb-12">
+            <div className="flex items-center justify-center gap-3 mb-6">
+              <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-lg flex items-center justify-center">
+                <Code className="w-5 h-5 text-white" />
+              </div>
+              <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+                AGUNG KRISNA PRASTYANING ARI
+              </h3>
+            </div>
+            <p className="text-lg text-white/60 mb-8 max-w-2xl mx-auto font-light">
+              Full Stack Developer passionate about creating innovative digital solutions
             </p>
+            
+            <div className="flex justify-center gap-6 mb-8">
+              <a 
+                href="mailto:hellokrisna02@gmail.com" 
+                className="w-12 h-12 bg-gray-900/50 rounded-lg flex items-center justify-center border border-blue-500/20 hover:border-blue-400/40 hover:scale-110 transition-all duration-300"
+              >
+                <Mail className="w-5 h-5 text-blue-400" />
+              </a>
+              <a 
+                href="https://github.com/agungkrisnaprastyaningari" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="w-12 h-12 bg-gray-900/50 rounded-lg flex items-center justify-center border border-blue-500/20 hover:border-blue-400/40 hover:scale-110 transition-all duration-300"
+              >
+                <Github className="w-5 h-5 text-blue-400" />
+              </a>
+              <a 
+                href="https://wa.me/6282257355759" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="w-12 h-12 bg-gray-900/50 rounded-lg flex items-center justify-center border border-blue-500/20 hover:border-blue-400/40 hover:scale-110 transition-all duration-300"
+              >
+                <Phone className="w-5 h-5 text-blue-400" />
+              </a>
+            </div>
+          </div>
+          
+          <div className="border-t border-blue-500/20 pt-8">
+            <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+              <p className="text-white/50 text-center md:text-left text-sm font-light">
+                © 2024 <span className="text-blue-400 font-medium">Next.js</span>
+              </p>
+              <div className="flex items-center gap-2 text-white/50 text-sm font-light">
+                <Code className="w-4 h-4 text-blue-400" />
+                <span>Made with passion and precision</span>
+              </div>
+            </div>
           </div>
         </div>
       </footer>
